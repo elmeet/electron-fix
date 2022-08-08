@@ -1,10 +1,10 @@
 const { writeFile, accessSync, constants, createWriteStream } = require('fs');
 const { platform, arch, tmpdir } = require('os');
 const { resolve } = require('path');
-const { exec } = require('child_process');
 const axios = require('axios');
 const chalk = require('chalk');
 const ora = require('ora');
+const extractZip = require('extract-zip')
 
 const ORIGIN = 'https://npm.taobao.org/mirrors/electron/';
 const TMPDIR = tmpdir();
@@ -85,21 +85,16 @@ const downloadElectron = async (url, downloadDir) => {
  * @param  {String} entry
  * @param  {String} output
 */
-const unzip = (entry, output) => {
+const unzip = async (entry, output) => {
   if (!fsExistsSync(entry)) {
     throw 'File does not exist!';
   }
-  
-  return new Promise((resolve, reject) => {
-    exec(`unzip -o ${entry} -d ${output}`, error => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
+  try{
+    await extractZip(entry, { dir: output })
+  } catch(err){
+    console.error(`exec error: ${error}`);
+    throw err
+  }
 };
 
 
