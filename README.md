@@ -8,7 +8,7 @@
 Using npm:
 
 ```bash
-$ npm install electron-fix -g
+$ npm install @elmeet/electron-fix -g
 ```
 
 Start:
