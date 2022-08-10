@@ -1,6 +1,6 @@
 {
   "name": "@elmeet/electron-fix",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Special area error fixed.",
   "main": "index.js",
   "bin": {
@@ -19,7 +19,7 @@
     "electron-install",
     "electron-fix"
   ],
-  "author": "pangxieju",
+  "author": "elmeet",
   "license": "MIT",
   "dependencies": {
     "axios": ">=0.21.1",
